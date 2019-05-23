@@ -4,8 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.gk.emon.bangladaypicker.OnWeekdaysChangeListener;
-import com.gk.emon.bangladaypicker.BanglaDaysPicker;
+import com.gk.emon.android.OnWeekdaysChangeListener;
+import com.gk.emon.android.BanglaDaysPicker;
 
 import java.util.List;
 

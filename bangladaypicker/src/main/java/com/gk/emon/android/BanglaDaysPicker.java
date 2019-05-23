@@ -1,4 +1,4 @@
-package com.gk.emon.bangladaypicker;
+package com.gk.emon.android;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.gk.emon.bangladaypicker.R;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
