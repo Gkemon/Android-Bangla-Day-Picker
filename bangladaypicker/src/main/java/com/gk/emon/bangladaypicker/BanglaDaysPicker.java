@@ -50,7 +50,7 @@ import static java.util.Calendar.WEDNESDAY;
  * Created by David Prodinger <dprodinger@aon.at> on 24.10.2017.
  */
 
-public class WeekdaysPicker extends LinearLayout {
+public class BanglaDaysPicker extends LinearLayout {
     public static final int ALL = 0;
     public static final int ODD = 1;
     public static final int EVEN = 2;
@@ -101,33 +101,33 @@ public class WeekdaysPicker extends LinearLayout {
     private TextDrawable.IShapeBuilder unselectedIShapeBuilder;
     private TextDrawable.IShapeBuilder selectedIShapeBuilder;
 
-    public WeekdaysPicker(Context context) {
+    public BanglaDaysPicker(Context context) {
         super(context);
         mContext = context;
         mHighlightColor = Color.RED;
         initView();
     }
 
-    public WeekdaysPicker(Context context, AttributeSet attrs) {
+    public BanglaDaysPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         initView(attrs);
     }
 
-    public WeekdaysPicker(Context context, AttributeSet attrs, int defStyleAttr) {
+    public BanglaDaysPicker(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
         initView(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public WeekdaysPicker(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public BanglaDaysPicker(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         mContext = context;
         initView(attrs);
     }
 
-    public static Spinner getRecurrenceSpinner(final WeekdaysPicker widget, Context mContext, View v) {
+    public static Spinner getRecurrenceSpinner(final BanglaDaysPicker widget, Context mContext, View v) {
         final View view = v;
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_item, mContext.getResources().getStringArray(R.array.recurrence));
@@ -176,24 +176,24 @@ public class WeekdaysPicker extends LinearLayout {
     private void initView(AttributeSet attrs) {
         TypedArray a = mContext.getTheme().obtainStyledAttributes(
                 attrs,
-                R.styleable.WeekdaysPicker,
+                R.styleable.BanglaDaysPicker,
                 0, 0);
         try {
-            mEditable = a.getBoolean(R.styleable.WeekdaysPicker_enabled, true);
-            mHighlightColor = a.getColor(R.styleable.WeekdaysPicker_highlight_color, Color.RED);
-            mBackgroundColor = a.getColor(R.styleable.WeekdaysPicker_background_color, Color.LTGRAY);
-            mWeekendColor = a.getColor(R.styleable.WeekdaysPicker_weekend_color, Color.GRAY);
-            mTextColor = a.getColor(R.styleable.WeekdaysPicker_text_color, Color.WHITE);
-            sunday_first_day = a.getBoolean(R.styleable.WeekdaysPicker_sunday_first_day, true);
-            weekend = a.getBoolean(R.styleable.WeekdaysPicker_show_weekend, true);
-            fullSize = a.getBoolean(R.styleable.WeekdaysPicker_full_size, false);
-            recurrence = a.getBoolean(R.styleable.WeekdaysPicker_recurrence, false);
-            weekendDarker = a.getBoolean(R.styleable.WeekdaysPicker_weekenddarker, false);
-            mWeekendTextColor = a.getColor(R.styleable.WeekdaysPicker_weekend_text_color, -1);
-            mBorderColor = a.getColor(R.styleable.WeekdaysPicker_border_color, -1);
-            mBorderThickness = a.getColor(R.styleable.WeekdaysPicker_border_thickness, 4);
-            mBorderHighlightColor = a.getColor(R.styleable.WeekdaysPicker_border_highlight_color, -1);
-            mBorderHighlightThickness = a.getColor(R.styleable.WeekdaysPicker_border_highlight_thickness, 4);
+            mEditable = a.getBoolean(R.styleable.BanglaDaysPicker_enabled, true);
+            mHighlightColor = a.getColor(R.styleable.BanglaDaysPicker_highlight_color, Color.RED);
+            mBackgroundColor = a.getColor(R.styleable.BanglaDaysPicker_background_color, Color.LTGRAY);
+            mWeekendColor = a.getColor(R.styleable.BanglaDaysPicker_weekend_color, Color.GRAY);
+            mTextColor = a.getColor(R.styleable.BanglaDaysPicker_text_color, Color.WHITE);
+            sunday_first_day = a.getBoolean(R.styleable.BanglaDaysPicker_sunday_first_day, true);
+            weekend = a.getBoolean(R.styleable.BanglaDaysPicker_show_weekend, true);
+            fullSize = a.getBoolean(R.styleable.BanglaDaysPicker_full_size, false);
+            recurrence = a.getBoolean(R.styleable.BanglaDaysPicker_recurrence, false);
+            weekendDarker = a.getBoolean(R.styleable.BanglaDaysPicker_weekenddarker, false);
+            mWeekendTextColor = a.getColor(R.styleable.BanglaDaysPicker_weekend_text_color, -1);
+            mBorderColor = a.getColor(R.styleable.BanglaDaysPicker_border_color, -1);
+            mBorderThickness = a.getColor(R.styleable.BanglaDaysPicker_border_thickness, 4);
+            mBorderHighlightColor = a.getColor(R.styleable.BanglaDaysPicker_border_highlight_color, -1);
+            mBorderHighlightThickness = a.getColor(R.styleable.BanglaDaysPicker_border_highlight_thickness, 4);
             if (mWeekendTextColor == -1) {
                 mWeekendTextColorChanged = false;
                 mWeekendTextColor = mHighlightColor;

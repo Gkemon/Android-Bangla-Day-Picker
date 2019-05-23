@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.gk.emon.bangladaypicker.OnWeekdaysChangeListener;
-import com.gk.emon.bangladaypicker.WeekdaysPicker;
+import com.gk.emon.bangladaypicker.BanglaDaysPicker;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WeekdaysPicker widget = (WeekdaysPicker) findViewById(R.id.weekdays);
+        BanglaDaysPicker widget = (BanglaDaysPicker) findViewById(R.id.weekdays);
         widget.setOnWeekdaysChangeListener(new OnWeekdaysChangeListener() {
             @Override
             public void onChange(View view, int clickedDayOfWeek, List<Integer> selectedDays) {
