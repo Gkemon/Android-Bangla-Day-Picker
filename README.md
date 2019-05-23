@@ -6,7 +6,7 @@
 
 ![Inspired by David Prodinger](https://github.com/DavidProdinger/Weekdays-Selector)
 
-![Screenshot](/screenshots/Screenshot_Weekdaysselector_1.png)
+![Screenshot](https://github.com/Gkemon/Android-Bangla-Day-Picker/blob/master/Screenshot_1558596994.png)
 
 ## Installation
 
