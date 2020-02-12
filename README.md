@@ -2,11 +2,12 @@
 > Widget for selecting the Bangla weekdays
 
 [![JitPack](https://jitpack.io/v/Gkemon/Android-Bangla-Day-Picker.svg)](https://jitpack.io/#Gkemon/Android-Bangla-Day-Picker)
+
 ## Screenshots
 
-![Inspired by David Prodinger](https://github.com/DavidProdinger/Weekdays-Selector)
+[Inspired by David Prodinger](https://github.com/DavidProdinger/Weekdays-Selector)
 
-![Screenshot](https://github.com/Gkemon/Android-Bangla-Day-Picker/blob/master/Screenshot_1558596994.png)
+<img src="https://github.com/Gkemon/Android-Bangla-Day-Picker/blob/master/Screenshot_1558596994.png" width="250" height="444" />
 
 ## Installation
 
