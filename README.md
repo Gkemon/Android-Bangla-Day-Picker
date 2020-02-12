@@ -28,7 +28,7 @@ Add the dependency
 
 ```groovy
 dependencies {
-	        implementation 'com.github.Gkemon:Android-Bangla-Day-Picker:1.0.0'
+	        implementation 'com.github.Gkemon:Android-Bangla-Day-Picker:1.0.2'
 	}
 ```
 
@@ -62,7 +62,9 @@ Add the dependency
         android:id="@+id/weekdays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:sunday_first_day="false"
+        app:friday_first_day="true" //If true the shows Islamic weekend
+        app:is_all_days_selected="false" //If true then selects all days
+        app:is_bangla="true" //If true then shows bangla days otherwise shows english
         app:full_size="true"/>
 ```
 
