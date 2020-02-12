@@ -62,7 +62,9 @@ Add the dependency
         android:id="@+id/weekdays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:sunday_first_day="false"
+        app:friday_first_day="true" //If true shows Islamic weekend
+        app:is_all_days_selected="false" //If true select all days
+        app:is_bangla="true"
         app:full_size="true"/>
 ```
 
