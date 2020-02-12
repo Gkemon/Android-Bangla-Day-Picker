@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         widget.setOnWeekdaysChangeListener(new OnWeekdaysChangeListener() {
             @Override
             public void onChange(View view, int clickedDayOfWeek, List<Integer> selectedDays) {
-                // Do Something
+
             }
         });
     }

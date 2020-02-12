@@ -4,4 +4,11 @@
         <item>Every odd week</item>
         <item>Every even week</item>
     </string-array>
+    <string name="sunday">রবি</string>
+    <string name="monday">সোম</string>
+    <string name="tuesday">মঙ্গল</string>
+    <string name="wednesday">বুধ</string>
+    <string name="thursday">বৃহস্পতি</string>
+    <string name="friday">শুক্র</string>
+    <string name="saturday">শনি</string>
 </resources>

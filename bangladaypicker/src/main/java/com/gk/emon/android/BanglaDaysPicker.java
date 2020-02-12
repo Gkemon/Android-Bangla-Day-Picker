@@ -72,8 +72,9 @@ public class BanglaDaysPicker extends LinearLayout {
     private TextDrawable.IBuilder unselectedBuilder;
     private TextDrawable.IBuilder unselectedWeekendBuilder;
     private boolean mEditable = false;
-    private boolean sunday_first_day = true;
-    private boolean weekend = true;
+    private boolean friday_first_day = true;
+    private boolean showWeekend = true;
+    private boolean isBangla = true;
     private boolean fullSize = true ;
     private boolean recurrence = false;
     private int unSelectedWeekendColor;
@@ -97,10 +98,10 @@ public class BanglaDaysPicker extends LinearLayout {
     private int mBorderHighlightThickness = 4;
     private List<Integer> allCreatedDays;
     private LinkedHashMap<Integer, Boolean> lastCustomDaysMap;
-
     private TextDrawable.IShapeBuilder unselectedWeekendIShapeBuilder;
     private TextDrawable.IShapeBuilder unselectedIShapeBuilder;
     private TextDrawable.IShapeBuilder selectedIShapeBuilder;
+    private boolean isSelectAllDays=true;
 
     public BanglaDaysPicker(Context context) {
         super(context);
@@ -180,13 +181,14 @@ public class BanglaDaysPicker extends LinearLayout {
                 R.styleable.BanglaDaysPicker,
                 0, 0);
         try {
+            isBangla = a.getBoolean(R.styleable.BanglaDaysPicker_is_bangla,true);
             mEditable = a.getBoolean(R.styleable.BanglaDaysPicker_enabled, true);
             mHighlightColor = a.getColor(R.styleable.BanglaDaysPicker_highlight_color, Color.RED);
             mBackgroundColor = a.getColor(R.styleable.BanglaDaysPicker_background_color, Color.LTGRAY);
             mWeekendColor = a.getColor(R.styleable.BanglaDaysPicker_weekend_color, Color.GRAY);
             mTextColor = a.getColor(R.styleable.BanglaDaysPicker_text_color, Color.WHITE);
-            sunday_first_day = a.getBoolean(R.styleable.BanglaDaysPicker_sunday_first_day, true);
-            weekend = a.getBoolean(R.styleable.BanglaDaysPicker_show_weekend, true);
+            friday_first_day = a.getBoolean(R.styleable.BanglaDaysPicker_friday_first_day, true);
+            showWeekend = a.getBoolean(R.styleable.BanglaDaysPicker_show_weekend, true);
             fullSize = a.getBoolean(R.styleable.BanglaDaysPicker_full_size, false);
             recurrence = a.getBoolean(R.styleable.BanglaDaysPicker_recurrence, false);
             weekendDarker = a.getBoolean(R.styleable.BanglaDaysPicker_weekenddarker, false);
@@ -250,22 +252,19 @@ public class BanglaDaysPicker extends LinearLayout {
         selectedDays.clear();
         row1.removeAllViewsInLayout();
         row2.removeAllViewsInLayout();
+
         // create DayViews
-        if (sunday_first_day && weekend) {
-            createDayView(SUNDAY, false);
-        }
+        createDayView(FRIDAY, isSelectAllDays);
+        createDayView(SATURDAY, isSelectAllDays);
+        createDayView(SUNDAY, true);
         createDayView(MONDAY, true);
         createDayView(TUESDAY, true);
         createDayView(WEDNESDAY, true);
         createDayView(THURSDAY, true);
-        createDayView(FRIDAY, true);
-        if (weekend) {
-            createDayView(SATURDAY, false);
-            if (!sunday_first_day) {
-                createDayView(SUNDAY, false);
-            }
-        }
+
+
     }
+
 
     private String getDayText(View v) {
         int day = (int) v.getTag();
@@ -274,22 +273,27 @@ public class BanglaDaysPicker extends LinearLayout {
 
     private String getDayLetter(int dayOfWeek) {
 
+           if(!isBangla)
+           {
+               String weekday = new DateFormatSymbols().getShortWeekdays()[dayOfWeek];
+               return fullSize ? weekday : weekday.charAt(0) + "";
+           }  else {
+               ArrayList<String> banglaDay = new ArrayList<>();
 
-        ArrayList<String> banglaDay = new ArrayList<>();
-        banglaDay.add("রবি");
-        banglaDay.add("সোম");
-        banglaDay.add("মঙ্গল");
-        banglaDay.add("বুধ");
-        banglaDay.add("বৃহস্পতি");
-        banglaDay.add("শুক্র");
-        banglaDay.add("শনি");
+               banglaDay.add(getContext().getString(R.string.friday));
+               banglaDay.add(getContext().getString(R.string.saturday));
+               banglaDay.add(getContext().getString(R.string.sunday));
+               banglaDay.add(getContext().getString(R.string.monday));
+               banglaDay.add(getContext().getString(R.string.tuesday));
+               banglaDay.add(getContext().getString(R.string.wednesday));
+               banglaDay.add(getContext().getString(R.string.thursday));
+               return fullSize ? banglaDay.get(dayOfWeek-1) : banglaDay.get(dayOfWeek-1).
+                       charAt(0) + "";
+        }
 
-//        String weekday = new DateFormatSymbols().getShortWeekdays()[dayOfWeek];
-//        return fullSize ? weekday : weekday.charAt(0) + "";
 
-        String weekday = banglaDay.get(dayOfWeek-1);
-        return weekday;
     }
+
 
     private String getDayString(int dayOfWeek, Locale locale) {
         return new DateFormatSymbols(locale).getWeekdays()[dayOfWeek];
@@ -302,7 +306,7 @@ public class BanglaDaysPicker extends LinearLayout {
         row2.removeAllViewsInLayout();
         System.out.println("map 1 " + daySet.get(0));
 
-        if (sunday_first_day && daySet.containsKey(SUNDAY)) {
+        if (friday_first_day && daySet.containsKey(SUNDAY)) {
             LinkedHashMap<Integer, Boolean> map = new LinkedHashMap<>();
             Iterator it = daySet.entrySet().iterator();
             int x = 0;
@@ -323,7 +327,7 @@ public class BanglaDaysPicker extends LinearLayout {
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
             System.out.println("ID " + entry.getKey());
-            if (!weekend && ((int) entry.getKey() == SATURDAY || (int) entry.getKey() == SUNDAY)) {
+            if (!showWeekend && ((int) entry.getKey() == SATURDAY || (int) entry.getKey() == SUNDAY)) {
                 //Weekend
             } else {
                 if (findViewWithTag(entry.getKey()) != null) {
@@ -367,7 +371,7 @@ public class BanglaDaysPicker extends LinearLayout {
                     row1.addView(dayView);
                 }
             } else {
-                if (tag == FRIDAY || tag == SATURDAY || (tag == SUNDAY && !sunday_first_day) || (tag == THURSDAY && sunday_first_day)) {
+                if (tag == FRIDAY || tag == SATURDAY || (tag == SUNDAY && !friday_first_day) || (tag == THURSDAY && friday_first_day)) {
                     row2.addView(dayView);
                 } else {
                     row1.addView(dayView);
@@ -643,7 +647,7 @@ public class BanglaDaysPicker extends LinearLayout {
     public void setSelectedDays(List<Integer> list) {
         if (!mCustomDays) {
             for (int day = SUNDAY; day <= SATURDAY; day++) {
-                if (weekend) {
+                if (showWeekend) {
                     setDaySelected((ImageView) findViewWithTag(day), list.contains(day));
                 } else {
                     if (day != SATURDAY && day != SUNDAY) {
@@ -1026,7 +1030,7 @@ public class BanglaDaysPicker extends LinearLayout {
      * get if Sunday is first day
      */
     public boolean getSundayFirstDay() {
-        return sunday_first_day;
+        return friday_first_day;
     }
 
     /**
@@ -1035,34 +1039,34 @@ public class BanglaDaysPicker extends LinearLayout {
      * @param b
      */
     public void setSundayFirstDay(boolean b) {
-        sunday_first_day = b;
+        friday_first_day = b;
     }
 
     /**
-     * get if weekend is showing
+     * get if showWeekend is showing
      */
     public boolean getShowWeekend() {
-        return weekend;
+        return showWeekend;
     }
 
     /**
-     * Set weekend is showing
+     * Set showWeekend is showing
      *
      * @param b
      */
     public void setShowWeekend(boolean b) {
-        weekend = b;
+        showWeekend = b;
     }
 
     /**
-     * get if weekend has other colors enabled
+     * get if showWeekend has other colors enabled
      */
     public boolean getWeekendDarker() {
         return weekendDarker;
     }
 
     /**
-     * Set weekend has other colors
+     * Set showWeekend has other colors
      *
      * @param b
      */
