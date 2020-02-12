@@ -45,11 +45,7 @@ import static java.util.Calendar.THURSDAY;
 import static java.util.Calendar.TUESDAY;
 import static java.util.Calendar.WEDNESDAY;
 
-/**
- * Project: Weekdays-Selector
- * <p>
- * Created by David Prodinger <dprodinger@aon.at> on 24.10.2017.
- */
+
 
 public class BanglaDaysPicker extends LinearLayout {
     public static final int ALL = 0;
