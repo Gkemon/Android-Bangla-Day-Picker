@@ -181,6 +181,7 @@ public class BanglaDaysPicker extends LinearLayout {
                 R.styleable.BanglaDaysPicker,
                 0, 0);
         try {
+            isSelectAllDays=a.getBoolean(R.styleable.BanglaDaysPicker_is_all_days_selected,false);
             isBangla = a.getBoolean(R.styleable.BanglaDaysPicker_is_bangla,true);
             mEditable = a.getBoolean(R.styleable.BanglaDaysPicker_enabled, true);
             mHighlightColor = a.getColor(R.styleable.BanglaDaysPicker_highlight_color, Color.RED);
@@ -254,13 +255,14 @@ public class BanglaDaysPicker extends LinearLayout {
         row2.removeAllViewsInLayout();
 
         // create DayViews
-        createDayView(FRIDAY, isSelectAllDays);
-        createDayView(SATURDAY, isSelectAllDays);
+
         createDayView(SUNDAY, true);
         createDayView(MONDAY, true);
         createDayView(TUESDAY, true);
         createDayView(WEDNESDAY, true);
         createDayView(THURSDAY, true);
+        createDayView(FRIDAY, isSelectAllDays);
+        createDayView(SATURDAY, isSelectAllDays);
 
 
     }
@@ -279,14 +281,13 @@ public class BanglaDaysPicker extends LinearLayout {
                return fullSize ? weekday : weekday.charAt(0) + "";
            }  else {
                ArrayList<String> banglaDay = new ArrayList<>();
-
-               banglaDay.add(getContext().getString(R.string.friday));
-               banglaDay.add(getContext().getString(R.string.saturday));
                banglaDay.add(getContext().getString(R.string.sunday));
                banglaDay.add(getContext().getString(R.string.monday));
                banglaDay.add(getContext().getString(R.string.tuesday));
                banglaDay.add(getContext().getString(R.string.wednesday));
                banglaDay.add(getContext().getString(R.string.thursday));
+               banglaDay.add(getContext().getString(R.string.friday));
+               banglaDay.add(getContext().getString(R.string.saturday));
                return fullSize ? banglaDay.get(dayOfWeek-1) : banglaDay.get(dayOfWeek-1).
                        charAt(0) + "";
         }

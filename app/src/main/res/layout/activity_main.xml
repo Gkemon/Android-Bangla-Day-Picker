@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:friday_first_day="true"
-        app:is_bangla="false"
+        app:is_all_days_selected="false"
+        app:is_bangla="true"
         app:full_size="true"/>
 
 </LinearLayout>
