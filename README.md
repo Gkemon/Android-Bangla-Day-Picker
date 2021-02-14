@@ -47,11 +47,13 @@ Add the JitPack repository to your build file
 
 Add the dependency
 
+```xml
 <dependency>
     <groupId>com.github.Gkemon</groupId>
     <artifactId>Android-Bangla-Day-Picker</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
 
 
 ## Usage
